@@ -9,19 +9,19 @@
 <VirtualHost *:80>
     ServerName demo.res.ch
     
-    <Proxy "balancer://companyset">
+    <Proxy "balancer://company">
         BalancerMember 'http://<?php print "$DYNAMIC_APP1"?>'
         BalancerMember 'http://<?php print "$DYNAMIC_APP2" ?>'
     </Proxy>
     
-    <Proxy "balancer://webserverset">
+    <Proxy "balancer://webserver">
         BalancerMember 'http://<?php print "$STATIC_APP1" ?>/'
         BalancerMember 'http://<?php print "$STATIC_APP2" ?>/'
     </Proxy>
     
-    ProxyPass '/api/company/' 'balancer://companyset/'
-    ProxyPassReverse '/api/company/' 'balancer://companyset/'
+    ProxyPass '/api/company/' 'balancer://company/'
+    ProxyPassReverse '/api/company/' 'balancer://company/'
     
-    ProxyPass '/' 'balancer://webserverset/'
-    ProxyPassReverse '/' 'balancer://webserverset/'	 
+    ProxyPass '/' 'balancer://webserver/'
+    ProxyPassReverse '/' 'balancer://webserver/'	 
 </VirtualHost>
