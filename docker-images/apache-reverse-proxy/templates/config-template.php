@@ -10,7 +10,7 @@
     ServerName demo.res.ch
 	
     <Proxy "balancer://company">
-        BalancerMember 'http://<?php print "$DYNAMIC_APP1"?>'
+        BalancerMember 'http://<?php print "$DYNAMIC_APP1" ?>'
         BalancerMember 'http://<?php print "$DYNAMIC_APP2" ?>'
     </Proxy>
     
